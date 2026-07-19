@@ -6,8 +6,10 @@ gsap.registerPlugin(ScrollTrigger);
 const canvas = document.querySelector('#carCanvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
-camera.position.set(0, 1.5, 6);
-camera.lookAt(0,0.5,0)
+camera.position.set(0, 0.8, 7);
+camera.lookAt(0,0.4,0);
+camera.fov = innerWidth/innerHeight < 0.7? 65:45;
+camera.updateProjectionMatrix();
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -37,7 +39,7 @@ loader.load(
     const size = box.getSize(new THREE.Vector3());
     const center = box.getCenter(new THREE.Vector3());
     console.log('Model size:', size,'center:', center);
-    const scale = 3 / Math.max(size.x, size.y, size.z);
+    const scale = 4.5 / Math.max(size.x, size.y, size.z);
     console.log('Computed scale', scale);
     car.scale.setScalar(scale);
     car.position.sub(center.multiplyScalar(scale));
@@ -61,17 +63,32 @@ loader.load(
 );
 
 // ---- Scroll-driven timeline ----
-
+function getResponsiveX(desktopX){
+    const aspect = innerWidth/innerHeight;
+    const factor = aspect < 0.7? 0.5:1;
+    return desktopX * factor;
+}
 
 function initScrollTimeline() {
-  const tl = gsap.timeline({
-    scrollTrigger: { trigger: '#main', start: 'top top', end: 'bottom bottom', scrub: 1 }
-  });
+  car.position.set(getResponsiveX(-3), 0, 0);
+  car.rotation.set(0, 0, 0);
 
+  const tl = gsap.timeline({
+    scrollTrigger: { trigger: '#main', start: 'top top', end: 'bottom bottom', scrub: 1, markers: false }
+  });
+  console.log('Timeline created — car exists?', !!car);
+  // left to bottom right
+  tl.to(car.position, { x: getResponsiveX(2.5), y: -1, z: 0, duration: 1 }, 0);
   tl.to(car.rotation, { y: Math.PI * 2, duration: 1 }, 0);
-  tl.to(camera.position, { z: 3, y: 2, duration: 1 }, 1);
-  tl.to(car.rotation, { x: 0.2, duration: 1 }, 1);
-  // explode section will come later once the second model is in
+
+  // bottom right to middle right
+  // bottom right to middle right — now a true top-down flip
+  tl.to(car.position, { x: getResponsiveX(3), y: 0.2, duration: 1 }, 1);
+  tl.to(car.rotation, { x: Math.PI / 2, y: Math.PI * 3, duration: 1 }, 1);
+
+  // left middle
+  tl.to(car.position,{x : getResponsiveX(-2.5), y: 0.2, duration: 1}, 2);
+  tl.to(car.rotation, { y: Math.PI * 4, duration: 1 }, 2);
 }
 
 // ---- Render loop ----
@@ -84,6 +101,7 @@ animate();
 // ---- Handle window resize ----
 addEventListener('resize', () => {
   camera.aspect = innerWidth / innerHeight;
+  camera.fov = innerWidth/innerHeight < 0.7? 65:45;
   camera.updateProjectionMatrix();
   renderer.setSize(innerWidth, innerHeight);
 });
