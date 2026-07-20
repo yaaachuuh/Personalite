@@ -87,7 +87,7 @@ function initScrollTimeline() {
   tl.to(car.rotation, { x: Math.PI / 2, y: Math.PI * 3, duration: 1 }, 1);
 
   // left middle
-  tl.to(car.position,{x : getResponsiveX(-2.5), y: 0.2, duration: 1}, 2);
+  tl.to(car.position,{x : getResponsiveX(-2.5), y: 0.5, duration: 1}, 2);
   tl.to(car.rotation, { y: Math.PI * 4, duration: 1 }, 2);
 }
 

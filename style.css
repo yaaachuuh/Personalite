@@ -23,10 +23,81 @@ html,body{
 .section{
     width: 100vw;
     height: 100vh;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-family: sans-serif;
     text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+.text-block{
+    position: absolute;
+    width: min(90vw, 400px);
+    max-width: 400px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+.text-block h2{
+    font-size: clamp(1.3rem, 5vw, 2.5rem);
+    margin-bottom: 0.5rem;
+}
+
+.text-block p{
+    font-size: clamp(0.85rem, 3vw, 1.1rem);
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+@media (max-width:400px){
+    .text-block{
+        width: 85vw;
+        left:50% !important;
+        right: auto !important;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+}
+
+.stats table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    table-layout: fixed;
+}
+
+.stats td{
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    font-size: clamp(0.85rem, 3vw, 1.1rem);
+}
+
+.stats td:first-child{
+    width: 75%;
+    opacity: 0.7;
+}
+
+.stats td:last-child{
+    width: 35%;
+    text-align: right;
+    font-weight: 680;
+}
+
+.credits{
+    background: #1a1a1a;
+    color: rgba(255,255,255,0.15);
+    padding: 1.5rem 8%;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.credit a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: underline;
+}
+
+.credit a:hover{
+    color: rgba(255,255,255,0.9);
 }
