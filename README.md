@@ -41,6 +41,10 @@ This is a static site — no build process needed.
     └── rb20.glb   # 3D model (see credit below)
 ```
 
+## Use of AI
+
+i used AI to explain and teach me how JS works as i am a total beginner to it. This is my first real Js project. I used it to help me debug issues and understand concepts that i learn from yt tutorials of GLTFLoader and scroll trigger animation. The actual build decisisions, choreography of the car positions, layout, color, camera angles and writing (including my devlogs) are mine.
+
 ## Credit
 
 3D Model: **"2024 Redbull RB20"** by [Dave Love](https://sketchfab.com/Tyler_Dave) on Sketchfab, licensed under [CC Attribution 4.0](https://creativecommons.org/licenses/by/4.0/).
