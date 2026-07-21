@@ -2,9 +2,10 @@
 
 A scroll-driven 3D experience of the Red Bull RB20, built with vanilla HTML, CSS, and JavaScript.
 
-**Live demo:** [redb20.nkv.ee](http://redb20.nkv.ee/)
+**Demo:** [github.com/yaaachuuh/Personalite](https://github.com/yaaachuuh/Personalite)   
+**Deployed at:** [redb20.nkv.ee](http://redb20.nkv.ee/)   
 
-![RB20 Scroll Concept screenshot](<img width="1470" height="956" alt="Screenshot 2026-07-22 at 1 05 47 AM" src="https://github.com/user-attachments/assets/e7890b3b-6c30-4ed9-a42f-26e507580360" />.png)
+![RB20 Scroll Concept screenshot](<img width="1470" height="956" alt="Screenshot 2026-07-22 at 1 05 47 AM" src="https://github.com/user-attachments/assets/629739d4-cc6c-4158-ba20-37c882177c5e" />.png)
 
 Built as part of the [Hack Club Stardance](https://stardance.hackclub.com/) challenge, and as an early concept piece for **DRIVEN**, a larger car-experience project I'm building. As you scroll, an interactive Three.js model of the RB20 moves, rotates, and reveals season stats.
 
